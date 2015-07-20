@@ -1,0 +1,146 @@
+<!-- BEGIN SIDEBAR MENU -->        
+<ul class="page-sidebar-menu">
+	<li>
+		<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		<div class="sidebar-toggler hidden-phone"></div>
+		<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+	</li>
+	<li>
+		<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+		<form class="sidebar-search">
+			<div class="input-box">
+				<a href="javascript:;" class="remove"></a>
+				<input type="text" placeholder="Search..." />
+				<input type="button" class="submit" value=" " />
+			</div>
+		</form>
+		<!-- END RESPONSIVE QUICK SEARCH FORM -->
+	</li>
+	<% if can? :manage, Service %>
+	<li class="start active">
+		<a href="/services">
+		<i class="icon-home"></i> 
+		<span class="title">销售单</span>
+		<span class="selected"></span>
+		</a>
+	</li>
+	<% end %>
+	
+	<% if can? :manage, CarModel %>
+	<li >
+		<a href="/car_models">
+		<i class="icon-sitemap"></i> 
+		<span class="title">车型</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/car_models">
+				车型列表</a>
+			</li>
+			<li >
+				<a href="/car_models/new">
+				新建车型</a>
+			</li>
+		</ul>
+	</li>
+	<% end %>
+	<% if can? :manage, Car %>
+	<li >
+		<a href="/cars">
+		<i class="icon-table"></i> 
+		<span class="title">车</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/cars">
+				车列表</a>
+			</li>
+			<!-- <li >
+				<a href="/cars/new">
+				新建车</a>
+			</li> -->
+		</ul>
+	</li>
+	<% end %>
+	<% if can? :manage, Buyer %>
+	<li >
+		<a href="/buyers">
+		<i class="icon-group"></i> 
+		<span class="title">会员</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/buyers">
+				会员列表</a>
+			</li>
+			<li >
+				<a href="/buyers/new">
+				新建会员</a>
+			</li>
+		</ul>
+	</li>
+	<% end %>
+
+	<% if can? :manage, Dealer %>
+	<li >
+		<a href="/dealers">
+		<i class="icon-briefcase"></i> 
+		<span class="title">经销商</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/dealers">
+				经销商列表</a>
+			</li>
+			<li >
+				<a href="/dealers/new">
+				新建经销商</a>
+			</li>
+		</ul>
+	</li>
+	<% end %>
+	
+	<% if can? :manage, Product %>
+	<li >
+		<a href="/products">
+		<i class="icon-cogs"></i> 
+		<span class="title">服务产品</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/products">
+				服务产品列表</a>
+			</li>
+			<li >
+				<a href="/products/new">
+				新建服务产品</a>
+			</li>
+		</ul>
+	</li>
+	<% end %>
+	<% if can? :manage, User %>
+	<li >
+		<a href="/users">
+		<i class="icon-user"></i> 
+		<span class="title">账户</span>
+		<span class="arrow "></span>
+		</a>
+		<ul class="sub-menu">
+			<li >
+				<a href="/users">
+				账户列表</a>
+			</li>
+			<li >
+				<a href="/users/new">
+				新建账户</a>
+			</li>
+		</ul>
+	</li>
+	<% end %>
+</ul>
+<!-- END SIDEBAR MENU -->

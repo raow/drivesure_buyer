@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  total_fee: MyString
+  begin_at: 2013-09-09 12:26:22
+  'no': MyString
+
+two:
+  total_fee: MyString
+  begin_at: 2013-09-09 12:26:22
+  'no': MyString

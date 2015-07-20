@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  contact: MyString
+  email: MyString
+  certificate_type: MyString
+  certificate_no: MyString
+  is_caa_vip: false
+  address: MyString
+  zip: MyString
+  phone: MyString
+  mobile: MyString
+
+two:
+  name: MyString
+  contact: MyString
+  email: MyString
+  certificate_type: MyString
+  certificate_no: MyString
+  is_caa_vip: false
+  address: MyString
+  zip: MyString
+  phone: MyString
+  mobile: MyString

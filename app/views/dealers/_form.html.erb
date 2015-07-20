@@ -1,0 +1,79 @@
+<% content_for :page_scripts do %>
+  <script src="/assets/scripts/app.js"></script>
+  <script src="/assets/scripts/form-components.js"></script>   
+  <script>
+    jQuery(document).ready(function() {       
+      App.init();
+      FormComponents.init();
+    });
+  </script> 
+<% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <!-- BEGIN Basic FORM PORTLET-->   
+    <div class="portlet box blue ">
+      <div class="portlet-title">
+        <div class="caption"><i class="icon-reorder"></i>经销商信息</div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse"></a>
+        </div>
+      </div>
+      
+      <div class="portlet-body form form-horizontal">
+        <%= form_for(@dealer) do |f| %>
+        <% if @dealer.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@dealer.errors.count, "error") %> prohibited this dealer from being saved:</h2>
+
+            <ul>
+            <% @dealer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="control-group">
+          <label class="control-label">经销商名称<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :name, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">地址<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :address, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">联系人<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :contact, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+         <div class="control-group">
+          <label class="control-label">电话<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :telephone, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">产品<span class="required">*</span></label>
+            <div class="controls">
+              <div class="row-fluid">
+                <% Product.all.each do |product| %>
+                  <label class="checkbox line">
+                  <span ><%= check_box_tag :product_ids, product.id, @dealer.products.include?(product), :name => 'dealer[product_ids][]' %></span><%= product.name %>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
+          <button type="cancel" class="btn">取消</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

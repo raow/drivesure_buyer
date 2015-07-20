@@ -1,0 +1,94 @@
+<% content_for :page_scripts do %>
+  <script src="/assets/scripts/app.js"></script>
+  <script>
+    jQuery(document).ready(function() {       
+      App.init();
+       if (jQuery().datepicker) {
+              $('#car_purchase_at').datepicker({
+                  rtl : App.isRTL(),
+                  format: "yyyy-mm-dd",
+                  autoclose: true,
+              });
+          }        
+    });
+  </script> 
+<% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <!-- BEGIN Basic FORM PORTLET-->   
+    <div class="portlet box blue ">
+      <div class="portlet-title">
+        <div class="caption"><i class="icon-reorder"></i>经销商信息</div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse"></a>
+        </div>
+      </div>
+      
+      <div class="portlet-body form form-horizontal">
+        <%= form_for(@car) do |f| %>
+        <% if @car.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
+            <ul>
+            <% @car.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="control-group">
+          <label class="control-label">车牌号<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :license_no, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">VIN<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :vin, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">引擎号<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :ein, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">购置日期<span class="required">*</span></label>
+          <div class="controls">
+                <div class="input-append date date-picker" data-date="12-02-2012" data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                  <%= f.text_field(:purchase_at,:class => 'm-wrap m-ctrl-medium date-picker',:readonly => 'readonly', :size => '16')%>
+                  <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">购置价格<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :purchase_price, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">车型<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.collection_select :car_model_id, CarModel.all,:id,:name %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">当前里程<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :current_mile, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+       
+     
+        <div class="form-actions">
+          <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
+          <button type="button" class="btn">取消</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

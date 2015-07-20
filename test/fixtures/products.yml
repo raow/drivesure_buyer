@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start_at: 2013-09-09 12:23:47
+  end_at: 2013-09-09 12:23:47
+  coverage_period: 
+  coverage_mile: 
+  name: MyString
+
+two:
+  start_at: 2013-09-09 12:23:47
+  end_at: 2013-09-09 12:23:47
+  coverage_period: 
+  coverage_mile: 
+  name: MyString

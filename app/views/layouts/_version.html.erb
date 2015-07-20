@@ -1,0 +1,18 @@
+<% if current_user.is_admin %>
+	<% item.versions.each do |v|%>
+	    <table style="width:100%;">
+	    	<tr>
+			<td>用户:</td><td><%=User.find(v.whodunnit).email  %></td>
+			<td>操作:</td><td colspan="3"><%=v.event %></td>
+			</tr>
+			<%v.changeset.each do |p|%>
+			<tr>
+				<td>更改项</td><td><%= label item.class.to_s.downcase.to_sym, p[0].to_sym %></td>
+				<td>更改前:</td><td><%=p[1][0]%></td>
+				<td>更新后:</td><td><%=p[1][1]%></td>
+			</tr>
+			<% end %>
+		</table>
+	<% end %>
+<% end %>
+	

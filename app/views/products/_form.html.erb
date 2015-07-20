@@ -1,0 +1,96 @@
+<% content_for :page_scripts do %>
+  <script src="/assets/scripts/app.js"></script>
+  <script src="/assets/scripts/form-components.js"></script>   
+  <script>
+    jQuery(document).ready(function() {       
+      App.init();
+      FormComponents.init();
+    });
+  </script> 
+<% end %>
+<div class="row-fluid">
+  <div class="span12">
+    <!-- BEGIN Basic FORM PORTLET-->   
+    <div class="portlet box blue ">
+      <div class="portlet-title">
+        <div class="caption"><i class="icon-reorder"></i>服务产品信息</div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse"></a>
+        </div>
+      </div>
+      
+      <div class="portlet-body form form-horizontal">
+        <%= form_for(@product) do |f| %>
+         <% if @product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="control-group">
+          <label class="control-label">产品名称<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :name, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">车型<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.collection_select :car_model_id, CarModel.all, :id, :name %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">服务期限<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :coverage_period, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">服务里程(公里)<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :coverage_mile, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">价格<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :fee, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">每次维修赔偿<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :once_reparation, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">累计维修赔偿<span class="required">*</span></label>
+          <div class="controls">
+            <%= f.text_field :total_reparation, :class => 'span6 m-wrap' %>
+          </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">经销商<span class="required">*</span></label>
+            <div class="controls">
+              <div class="row-fluid">
+                <% Dealer.all.each do |dealer| %>
+                  <label class="checkbox line">
+                  <span ><%= check_box_tag :dealer_ids, dealer.id, @product.dealers.include?(dealer), :name => 'product[dealer_ids][]' %></span><%= dealer.name %>
+                  </label>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn blue"><i class="icon-ok"></i> 保存</button>
+          <button type="cancel" class="btn">取消</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

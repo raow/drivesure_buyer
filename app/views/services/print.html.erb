@@ -1,0 +1,141 @@
+
+<head>
+	<meta charset="utf-8" />
+	<title>销售信息管理系统</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<%= csrf_meta_tags %>
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->        
+	<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	
+	<link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/assets/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="/assets/css/style.css" rel="stylesheet" type="text/css"/>
+	
+	<style>  
+	@media print {  
+	.noprint {display:none}  
+	}  
+	.baseinfo{
+		margin: 5px 30px 30px 30px;
+		padding: 5px 30px 30px 30px;
+		border-color: #000000;
+		border-width: 1px;
+		border-style: solid;
+		font-style: 
+	}
+	.form-section {
+	  margin: 10px 0px 10px 0px !important;
+	  padding-bottom: 5px;
+	  border-bottom: 1px solid #eee;
+	}
+	.box{
+		margin-left: 100px;
+	}
+	.notice
+	{
+		margin-bottom:5px;
+		font-weight:bold; 
+		font-size:15px;
+	}
+	.line
+	{
+		margin-top:10px; 
+		border-bottom: 1px solid;
+		margin-bottom: 10px;
+	}
+	</style>
+</head>
+<body>
+<div class="baseinfo">
+<h2 align="center">大陆汽车质保服务</h2>
+<div class="line"></div>
+<table style="width:100%;">
+	<tr>
+		<td>质保服务编号:</td>
+		<td><%=@service.no %></td>
+		<td>签发日期:</td>
+		<td><%=@service.issue_at.strftime('%Y年%m月%d日') %></td>
+		
+	</tr>
+</table>
+<h4 class="form-section">服务明细:</h4>
+<div class="box">
+<div class="row-fluid">
+	服务期限:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.start_at.strftime('%Y年%m月%d日')%> 至 <%=@service.end_at.strftime('%Y年%m月%d日')%></span>
+</div>
+<div class="row-fluid">
+	质保服务计划名称:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.product.name%></span>
+</div>
+<div class="row-fluid">
+	服务期限(月):&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.product.coverage_period%></span> 
+</div>
+<div class="row-fluid">
+	服务里程(公里):&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.product.coverage_mile%></span>
+</div>
+<div class="row-fluid">
+	每次维修赔偿限额:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.product.once_reparation.blank? ? "市场重置价格" : @service.product.once_reparation%></span>
+</div>
+<div class="row-fluid">
+	累计维修赔偿限额:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.product.total_reparation.blank? ? "车辆购置价格" : @service.product.total_reparation%></span>
+</div>
+</div>
+<h4 class="form-section">车辆信息:</h4>
+<div class="box">
+<div class="row-fluid">
+	型号:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.car_model.name %></span>
+</div>
+<div class="row-fluid">
+	购置日期:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.purchase_at.strftime('%Y年%m月%d日') %></span>
+</div>
+<div class="row-fluid">
+	购置价格:&nbsp;&nbsp;&nbsp;&nbsp;¥<span class="text bold"><%=@service.car.purchase_price%>元</span>
+</div>
+<div class="row-fluid">
+	车牌号:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.license_no %>
+</div>
+<div class="row-fluid">
+	车架号:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.vin %></span>
+</div>
+<div class="row-fluid">
+	引擎编号:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.ein %></span>
+</div>
+<div class="row-fluid">
+	当前里程数:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.car.current_mile%> 公里</span>
+</div>
+</div>
+<h4 class="form-section">经销商信息:</h4>
+<div class="box">
+<div class="row-fluid">
+	公司名称:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.dealer.name %></span>
+</div>
+<div class="row-fluid">
+	公司地址:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.dealer.address %></span>
+</div>
+<div class="row-fluid">
+	联系人:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.dealer.contact %></span>
+</div>
+<div class="row-fluid">
+	联系人电话:&nbsp;&nbsp;&nbsp;&nbsp;<span class="text bold"><%=@service.dealer.telephone %></span>
+</div>
+</div>
+<h4 class="form-section">服务费用:</h4>
+<div class="box">
+	<font style="font-size:18px;">
+	总计:&nbsp;&nbsp;&nbsp;&nbsp;¥<span class="text" style='color:red;'><%=@service.total_fee%>元</span>
+	</font>
+</div>
+<div class="line"></div>
+<div class="notice">
+重要提示<br/>本明细单是质保服务文件的重要组成部分,请妥善保存质保手册和本明细单等重要文件</div>
+<div>
+<div>
+1.请详细阅读保险条款,特别是责任免除和投保人,被保险人义务。<br/>
+2.收到明细单后,请立即核对,如有不符或疏漏,请及时通知保险人兵办理变更或补充手续。<br/>
+3.您可以登陆网站www.caa.com.cn用户栏下查询承保理赔信息,或拨打客户热线4008181010查询有关信息<br/>
+</div>
+</div>
+<input type="button" id='btnPrint' value="打印" class="noprint" onclick="print();">
+</body>
+</span>

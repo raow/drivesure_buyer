@@ -1,0 +1,69 @@
+<div class="row-fluid">
+<div class="span12">
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet box grey">
+<div class="portlet-title">
+<div class="caption"><i class="icon-globe"></i>车列表</div>
+<div class="tools">
+  <a href="javascript:;" class="collapse"></a>
+</div>
+</div>
+<div class="portlet-body">
+
+<div class="row-fluid">
+  <div class="btn-group pull-right">
+    <a href="/cars/new" class="btn green">创建<i class="icon-plus"></i></a>
+
+    <button class="btn dropdown-toggle" data-toggle="dropdown">工具<i class="icon-angle-down"></i>
+    </button>
+
+    <ul class="dropdown-menu pull-right">
+      <li><a href="#">打印</a></li>
+      <li><a href="#">保存PDF</a></li>
+      <li><a href="#">导出Excel</a></li>
+    </ul>
+  </div>
+  <div class="dataTables_filter pull-left" id="sample_1_filter">
+    <label>搜索: <input type="text" aria-controls="sample_1" class="m-wrap medium"></label>
+  </div>
+  
+</div>
+<div id="sample_1_wrapper" class="dataTables_wrapper form-inline" role="grid">
+  <table class="table table-striped table-bordered table-hover dataTable" id="sample_1" aria-describedby="sample_1_info">
+    <thead>
+      <tr>
+        <th>LicenseNo</th>
+        <th>Vin</th>
+        <th>购置日期</th>
+        <th>购置价格</th>
+        <th>引擎号</th>
+        <th>车型</th>
+        <th>当前里程数</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="gradeX odd">
+      <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.license_no %></td>
+        <td><%= car.vin %></td>
+        <td><%= car.purchase_at.strftime('%Y年%m月%d日')  %></td>
+        <td><%= car.purchase_price %></td>
+        <td><%= car.ein %></td>
+        <td><%= car.car_model.name %></td>
+        <td><%= car.current_mile %></td>
+        <td><%= link_to '详情', car %></td>
+        <td><%= link_to '编辑', edit_car_path(car) %></td>
+        <td><%= link_to '删除', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @cars %>
+</div>
+</div>
+<!-- END EXAMPLE TABLE PORTLET-->
+</div>
+</div>

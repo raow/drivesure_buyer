@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  license_no: MyString
+  vin: MyString
+  purchase_at: 2013-09-09 12:21:28
+  purchase_price: 9.99
+  ein: MyString
+  model: MyString
+  current_mile: 
+
+two:
+  license_no: MyString
+  vin: MyString
+  purchase_at: 2013-09-09 12:21:28
+  purchase_price: 9.99
+  ein: MyString
+  model: MyString
+  current_mile: 
